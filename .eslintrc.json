@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "curly": "error",
+    "quotes": ["error", "single"],
+    // Disabled as eslint can't understand ~/path syntax
+    "import/no-unresolved": 0,
+    // Disabled as it gets confused with paths that it can't resolve.
+    "import/extensions": 0,
+    "react/no-danger": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-one-expression-per-line": "off"
+  }
+}
