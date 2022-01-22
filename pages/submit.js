@@ -1,3 +1,9 @@
-export default function SubmitListing() {
-  return 'This is the Submit listing page';
+import SubmitListingForm from '@/components/listing/SubmitListingForm';
+
+const SubmitPage = () => {
+  return (
+    <SubmitListingForm />
+  );
 }
+
+export default SubmitPage;
