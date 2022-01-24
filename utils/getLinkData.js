@@ -30,23 +30,22 @@ function getLinkData(link, classObj, openNewWindow = null,) {
   // Define props to pass to the element
   const props = {};
 
-
-  // Both the 'a' and 'Link' components require a href prop
-  // Pass directly to the href attribute
-  props.href = link
-  props.className = classObj;
-
   // If the link is external, set other necessary attributes
   if (newWindow) {
     props.target = '_blank';
     props.rel = 'noopener noreferrer';
   }
 
+  // Both the 'a' and 'Link' components require a href prop
+  // Pass directly to the href attribute
+  props.href = link
+  props.className = classObj;
+
   return {
-    component: isExternalLink ? 'a' : 'Link',
+    isExternal: isExternalLink,
     openInNewWindow: newWindow,
     props,
-    link
+    link,
   }
 }
 

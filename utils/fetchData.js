@@ -4,15 +4,15 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 /**
  * 
  * @param {string} path - The API endpoint path
- * @param {string} params - The query params
+ * @param {string} query - The query params
  * @returns {Promise} - A promise that resolves to the response body
  */
-async function fetchData(path, params = null) {
+async function fetchData(path, query) {
   let url;
 
   // If params are passed, add them to the url
-  if (params !== null) {
-    url = `${baseUrl}/${path}/${params}`;
+  if (query !== null) {
+    url = `${baseUrl}/${path}?${query}`;
   } else {
     url = `${baseUrl}/${path}`;
   }

@@ -1,28 +1,13 @@
-import { fetchData } from '@/utils/fetchData';
 import ListingsList from '@/components/listing/ListingsList';
+import { useDefaultLayoutContext } from '@/context/defaultLayout';
 
-/**
- * To-DO:
- * 
- * - [ ] Parse in listings from the API
- * - [ ] Add the filtered listings section to the page
- */
+export default function Home() {
+  const { listings } = useDefaultLayoutContext();
 
-
-export default function Home({ listings }) {
   return (
     <section>
+      <h1>Featured listings</h1>
       <ListingsList listings={listings} length={4} />
     </section>
   )
-}
-
-export async function getServerSideProps() {
-  const { data: listings } = await fetchData('listings');
-
-  return {
-    props: {
-      listings,
-    }
-  }
 }
