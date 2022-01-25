@@ -2,7 +2,7 @@ import App from 'next/app';
 import qs from 'qs';
 import '../styles/globals.css'
 import { DefaultLayoutProvider } from '@/context/defaultLayout';
-import { fetchData } from '@/utils/fetchData';
+import { fetchData } from '@/utils/data';
 
 const listingsQuery = qs.stringify({
   populate: ['categories']

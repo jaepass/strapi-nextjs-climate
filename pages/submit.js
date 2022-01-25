@@ -2,7 +2,10 @@ import SubmitListingForm from '@/components/listing/SubmitListingForm';
 
 const SubmitPage = () => {
   return (
-    <SubmitListingForm />
+    <section>
+      <h1>Submit a new Listing</h1>
+      <SubmitListingForm />
+    </section>
   );
 }
 

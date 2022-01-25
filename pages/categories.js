@@ -1,5 +1,5 @@
 import CardItem from '@/components/CardItem';
-import { fetchData } from 'utils/fetchData';
+import { fetchData } from 'utils/data';
 
 export default function CategoriesPage({ categories }) {
   return (
@@ -25,4 +25,8 @@ export async function getStaticProps() {
       categories,
     }
   }
+}
+
+export async function getStaticPaths() {
+
 }

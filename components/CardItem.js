@@ -1,4 +1,4 @@
-import DynamicLink from '@/components/DynamicLink';
+import DynamicLink from '@/components/global/DynamicLink';
 
 const CardItem = ({ link, children }) => {
   return (
