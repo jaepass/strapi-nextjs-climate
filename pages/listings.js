@@ -1,63 +1,63 @@
 import qs from 'qs';
-import Link from 'next/link';
+import Head from 'next/head';
 import { useDefaultLayoutContext } from '@/context/defaultLayout';
 import { fetchData } from 'utils/data';
+import Hero from '@/components/global/Hero';
 import ListingsList from '@/components/listing/ListingsList';
-
-// const getCategoryQuery = (categoryString) => {
-//   const query = qs.stringify({
-//     populate: {
-//       categories: {
-//         sort: ['name:asc'],
-//         filters: {
-//           name: {
-//             $eq: queryString,
-//           },
-//         },
-//       },
-//     },
-//   }, {
-//     ecodeValuesOnly: true,
-//   });
-
-//   return query;
-// }
 
 const query = qs.stringify({
   populate: {
     hero: {
       populate: '*',
-    }
+    },
+    seo: {
+      populate: '*',
+    },
   }
 }, {
     ecodeValuesOnly: true,
 });
 
 // List of listings
-export default function ListingsPage ({ attributes }) {
+export default function ListingsPage ({ listingsPage }) {
   const { listings } = useDefaultLayoutContext();
+  
+  if (!listingsPage) {
+    return null;
+  }
+  
+  const {
+    attributes: {
+      title,
+      hero: heroData,
+      seo: seoData,
+    }
+  } = listingsPage;
 
   return (
-    <section className="relative pt-40">
-      <section>
-        {/* <h1>Categories filter</h1> */}
-        {/* { categories?.map((category) => (
-          <Link href={ `http://localhost:3000/api/listings?populate[categories][sort][0]=name%3Aasc&populate[categories][filters][name][$eq]=${category.attributes.name}`} key={category.attributes.name}>
-            <a>{ category.attributes.name }</a>
-          </Link>
-      ))} */}
+    <>
+      <Head>
+        <title>{ title }</title>
+        <meta name="title" content={ seoData.metaTitle } />
+        <meta name="description" content={ seoData.metaDescription } />
+      </Head>
+
+      <Hero hero={heroData} />
+
+      <section className="p-6 md:py-20 lg:max-w-5xl mx-auto">
+        <h2 className="font-display text-3xl md:text-4xl tracking-wider font-extrabold leading-tight">Initiatives and organizations</h2>
+          <ListingsList listings={listings} />
       </section>
-      <ListingsList listings={listings} />
-    </section>
+    </>
   );
 }
 
-// export async function getStaticProps() {
-//   const { data: { attributes } } = await fetchData('listings-page', query);
+export async function getStaticProps() {
+  const { data: listingsPage } = await fetchData('listings-page', query);
 
-//   return {
-//     props: {
-//       attributes
-//     }
-//   }
-// }
+  return {
+    props: {
+      listingsPage,
+    }
+  }
+}

@@ -6,6 +6,10 @@ const Navigation = () => {
     defaultPage: { attributes: { navigation } },
   } = useDefaultLayoutContext();
 
+  if (!navigation) {
+    return null;
+  }
+
   return (
     <nav className="flex items-center justify-center inline-block align-middle h-20 w-full bg-white fixed z-50 space-x-3 shadow-md">
       <ul className="flex flex-wrap w-full md:flex-1 px-7">

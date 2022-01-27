@@ -6,8 +6,12 @@ const Footer = () => {
     defaultPage: { attributes: { footer } },
   } = useDefaultLayoutContext();
 
+  if (!footer) {
+    return null;
+  }
+
   return (
-    <footer className="mt-20 pt-16 pb-14 border items-center flex justify-center">
+    <footer className="mt-12 pt-16 pb-14 border items-center flex justify-center">
       <div>
         <DynamicLink
           link={footer.footerTitle.href}

@@ -9,11 +9,9 @@ const DefaultLayoutProvider = ({ children, value }) => {
   return (
     <DefaultLayoutContext.Provider value={value}>
       <Navigation />
-      <main className="pr-40">
-        <section className="pt-40 pl-40">
+        <main>
           { children }
-        </section>
-      </main>
+        </main>
       <Footer />
     </DefaultLayoutContext.Provider>
   )
