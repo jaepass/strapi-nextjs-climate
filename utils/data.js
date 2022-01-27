@@ -1,6 +1,6 @@
 // Get the url of the Strapi API based om the env variable or the default local one.
 function getStrapiURL(path) {
-  return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/api/'}${path}`;
+  return `https://strapi-climate-api.herokuapp.com/api/${path}`;
 }
 
 /**

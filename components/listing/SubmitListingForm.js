@@ -43,7 +43,7 @@ const SubmitListingForm = () => {
       description: descriptionEl.current.value,
     };
 
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/listings`, {
+    await fetch('https://strapi-climate-api.herokuapp.com/api/listings', {
       method: 'POST',
       body: JSON.stringify({
         data: formPayload
