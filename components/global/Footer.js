@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <footer className="mt-12 pt-16 pb-14 border items-center flex justify-center">
-      <div>
+      <div className="text-center px-4">
         <DynamicLink
           link={footer.footerTitle.href}
           classObj="transition duration-150 text-gray-900 hover:text-gray-600"
