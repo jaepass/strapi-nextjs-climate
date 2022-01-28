@@ -1,6 +1,9 @@
 // Get the url of the Strapi API based om the env variable or the default local one.
 function getStrapiURL(path) {
-  return `https://strapi-climate-api.herokuapp.com/api/${path}`;
+  if (process.env.NODE_ENV === 'production') {
+    return process.env.NEXT_PUBLIC_BASE_URL + path
+  }
+  return process.env.LOCAL_BASE_URL + path;
 }
 
 /**
@@ -30,8 +33,6 @@ function getStrapiURL(path) {
 export function getData(slug) {
   const slugToReturn = `${slug}`;
   const apiUrl = `pages?slug=${slug}`;
-
-  console.log('API url', apiUrl);
 
   return {
     data: getStrapiURL(apiUrl),

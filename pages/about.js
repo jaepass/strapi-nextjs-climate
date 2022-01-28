@@ -1,13 +1,15 @@
 import qs from 'qs';
-import Head from 'next/head';
-import { useDefaultLayoutContext } from '@/context/defaultLayout';
+import Head from 'next/head'
 import { fetchData } from 'utils/data';
 import Hero from '@/components/global/Hero';
-import ListingsList from '@/components/listing/ListingsList';
+import Content from '@/components/global/Content';
 
 const query = qs.stringify({
   populate: {
     hero: {
+      populate: '*',
+    },
+    content: {
       populate: '*',
     },
     seo: {
@@ -18,11 +20,9 @@ const query = qs.stringify({
     ecodeValuesOnly: true,
 });
 
-// List of listings
-export default function ListingsPage ({ listingsPage }) {
-  const { listings } = useDefaultLayoutContext();
+export default function AboutPage ({ aboutPage }) {
   
-  if (!listingsPage) {
+  if (!aboutPage) {
     return null;
   }
   
@@ -31,8 +31,9 @@ export default function ListingsPage ({ listingsPage }) {
       title,
       hero: heroData,
       seo: seoData,
+      content: contentArr,
     }
-  } = listingsPage;
+  } = aboutPage;
 
   return (
     <>
@@ -45,20 +46,23 @@ export default function ListingsPage ({ listingsPage }) {
       <Hero hero={heroData} />
 
       <section className="p-6 md:py-20 lg:max-w-5xl mx-auto">
-        <h2 className="font-display text-3xl md:text-4xl tracking-wider font-extrabold leading-tight">Initiatives and organizations</h2>
-          <ListingsList listings={listings} />
+        { contentArr?.length > 0 && contentArr.map((contentData, index) => (
+          <Content
+            key={index}
+            content={contentData}
+          />
+        )) }
       </section>
     </>
   );
 }
 
 export async function getStaticProps() {
-  const { data: listingsPage } = await fetchData('listings-page', query);
+  const { data: aboutPage } = await fetchData('about-page', query);
 
   return {
     props: {
-      listingsPage,
-    },
-    revalidate: 1,
+      aboutPage,
+    }
   }
 }

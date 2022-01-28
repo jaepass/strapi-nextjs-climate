@@ -24,8 +24,6 @@ export default async function handler(req, res) {
     description: body.data.description,
   }
 
-  console.log('Listing payload:', newListingPayload);
-
   axios(baseUrl, {
     method: 'POST',
     body: JSON.stringify(newListingPayload),
@@ -33,12 +31,10 @@ export default async function handler(req, res) {
       'Content-Type': 'application/json',
     },
   }).then((response) => {
-    console.log('Response:', response.data);
     res.status(200).json({ response });
     res.end(JSON.stringify(response.data));
   })
     .catch((error) => {
-      console.log('Error:', error.message);
       res.status(400).json({ error: error.message });
     });
 }

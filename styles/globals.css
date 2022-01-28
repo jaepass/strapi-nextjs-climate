@@ -16,11 +16,11 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl font-bold;
+  @apply text-3xl font-bold tracking-wider;
 }
 
 h3 {
-  @apply text-2xl font-bold;
+  @apply text-2xl font-bold tracking-wider;
 }
 
 h4 {
@@ -35,6 +35,17 @@ a {
 
 p {
   @apply text-base;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  @apply pb-4;
+}
+
+.markdown p {
+  @apply pb-4 last:pb-0;
 }
 
 

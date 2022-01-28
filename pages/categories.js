@@ -12,7 +12,7 @@ export default function CategoriesPage({ categories }) {
       { categories?.map((category) => (
         <CardItem
           key={category.id}
-          link={`/categories/${category.slug}`}
+          link={`/category/${category.attributes.slug}`}
         >
           {category.attributes.name}
         </CardItem> 
