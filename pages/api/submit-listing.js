@@ -10,31 +10,36 @@ export default async function handler(req, res) {
     return;
   }
 
-  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/listings`;
+  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}listings`;
 
-  // Parse the request body
-  const body = JSON.parse(req.body);
+  // Deconstruct data from the request body
+  const { data } = req.body;
 
   // Store the new listing object payload
   const newListingPayload = {
-    contactName: body.data.contactName,
-    email: body.data.email,
-    name: body.data.name,
-    website: body.data.website,
-    description: body.data.description,
+    contactName:data.contactName,
+    email: data.email,
+    name: data.name,
+    website: data.website,
+    description: data.description
   }
 
-  axios(baseUrl, {
-    method: 'POST',
-    body: JSON.stringify(newListingPayload),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then((response) => {
-    res.status(200).json({ response });
-    res.end(JSON.stringify(response.data));
-  })
-    .catch((error) => {
-      res.status(400).json({ error: error.message });
+  try {
+    // Send the new listing object payload to the Strapi API
+    const response = await axios({
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': '*/*'
+      },
+      url: baseUrl,
+      data: JSON.stringify({
+        data: newListingPayload,
+      })
     });
+
+    res.status(response.status).json(response.data)
+  } catch (error) {
+    res.status(error.response.status).json(error.response.data)
+  }
 }
