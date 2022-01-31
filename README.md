@@ -1,7 +1,7 @@
 <p align="center">
-  <strong>A climate initiatives listing application built in <a href="https://nextjs.org" target="_blank">Next.js</a></strong> 🤘<br />
+  <strong>A climate initiatives listing application built in <a href="https://nextjs.org" target="_blank">Next.js</a></strong> ⚡<br />
   <strong>Headless CMS powered by <a href="https://strapi.io" target="_blank">Strapi</a></strong> 🟪<br />
-  <strong>API backend deployed to <a href="https://heroku.com/" target="_blank">Heroku</a></strong> ⚡<br />
+  <strong>API backend deployed to <a href="https://heroku.com/" target="_blank">Heroku</a></strong> 🔳<br />
   <strong>Front-end deployed to <a href="https://vercel.com/" target="_blank">Vercel</a></strong> ▲<br />
 </p>
 
